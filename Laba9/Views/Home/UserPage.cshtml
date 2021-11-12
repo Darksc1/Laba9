@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@using Laba9.Entities
+@using Microsoft.VisualBasic
+@model IEnumerable<Link>
+
+
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Чат</title>
+</head>
+<body>
+<h1>Добро пожаловать @User.Identity.Name <a href="/Home/Logout">Выйти</a> </h1>
+@Html.Raw(ViewBag.message)
+<form method="post">
+        <input placeholder="Введите ссылку" type="text" name="link"/>
+        <input placeholder="Введите описание" type="text" name="info"/>
+        <input type="submit" name="buttonType" value="Добавить" />
+        <input type="submit" name="buttonType" value="Удалить" />
+    </form>
+    <pre>
+    </pre>
+    <form method="post">
+        <input placeholder="Изменяемая ссылка" type="text" name="sourceLink"/>
+        <input placeholder="На что изменить"  type="text" name="targetLink"/>
+        <input type="submit" name="buttonType" value="Изменить" />
+    </form>
+<div style="width:200%; height:600px; overflow-y:scroll;">
+    <pre>
+    </pre>
+    @foreach (Link msg in Model)
+    {
+        <table>
+            <tr>
+                <td>
+                    <div style="color:gray; font-size: large">
+                        @msg.Sender.Username:
+                    </div>
+                </td>
+                <td>
+                    <div style="font-size: medium">
+                        @msg.Text
+                    </div>
+                </td>
+                <td>
+                    <div style="font-size: medium">
+                      — @msg.Info
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <hr/>
+    }
+</div>
+    
+</body>
+</html>

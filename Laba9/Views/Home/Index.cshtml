@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Главная</title>
+</head>
+<body>
+    <h1>Добро пожаловать</h1>
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <a href="/Home/Register">Регистрация</a>
+        <a href="/Home/Login">Авторизация</a>
+    }
+    else
+    {
+        @User.Identity.Name
+        <a href="/Home/Logout">Выйти</a>
+    }
+</body>
+</html>
